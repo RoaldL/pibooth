@@ -54,10 +54,12 @@ class LightsPlugin(object):
     @pibooth.hookimpl
     def state_chosen_exit(self, app):
         app.leds.off()
+        app.illumination.on()
 
     @pibooth.hookimpl
     def state_print_enter(self, app):
         app.leds.blink(on_time=self.blink_time, off_time=self.blink_time)
+        app.illumination.off()
 
     @pibooth.hookimpl
     def state_print_do(self, app, events):

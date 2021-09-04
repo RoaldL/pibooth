@@ -140,6 +140,8 @@ class PiApplication(object):
         self.leds = LEDBoard(capture="BOARD" + config.get('CONTROLS', 'picture_led_pin'),
                              printer="BOARD" + config.get('CONTROLS', 'print_led_pin'))
 
+        self.illumination = LEDBoard(illumination="BOARD" + config.get('CONTROLS', 'illumination_relay_pin'))
+
         self.printer = Printer(config.get('PRINTER', 'printer_name'),
                                config.getint('PRINTER', 'max_pages'),
                                config.gettyped('PRINTER', 'printer_options'),
@@ -388,6 +390,7 @@ class PiApplication(object):
                 if not self._menu and self.find_settings_event(events):
                     self.camera.stop_preview()
                     self.leds.off()
+                    self.illumination.off()
                     self._menu = PiConfigMenu(self._pm, self._config, self, self._window)
                     self._menu.show()
                     self.leds.blink(on_time=0.1, off_time=1)
@@ -395,6 +398,7 @@ class PiApplication(object):
                     self._menu.process(events)
                 elif self._menu and not self._menu.is_shown():
                     self.leds.off()
+                    self.illumination.off()
                     self._initialize()
                     self._machine.set_state('wait')
                     self._menu = None
