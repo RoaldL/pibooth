@@ -51,6 +51,7 @@ class CameraPlugin(object):
             app.capture_nbr = None
         else:
             app.capture_nbr = app.capture_choices[0]
+        app.camera.idle()
 
     @pibooth.hookimpl
     def state_choose_do(self, app, events):

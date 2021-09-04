@@ -301,6 +301,11 @@ class GpCamera(BaseCamera):
 
         self._hide_overlay()  # If stop_preview() has not been called
 
+    def idle(self):
+        """Close the camera driver temporarily
+        """
+        self._cam.exit()
+
     def quit(self):
         """Close the camera driver, it's definitive.
         """
