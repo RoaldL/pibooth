@@ -12,6 +12,7 @@ import logging
 import argparse
 import multiprocessing
 from warnings import filterwarnings
+from datetime import datetime
 
 import pygame
 from gpiozero import Device, ButtonBoard, LEDBoard, pi_info
@@ -452,10 +453,10 @@ def main():
     options = parser.parse_args()
 
     if not options.nolog:
-        filename = osp.join(tempfile.gettempdir(), 'pibooth.log')
+        filename = osp.join(tempfile.gettempdir(), 'pibooth', datetime.now().strftime("%m%d%Y_%H%M%S") + '_pibooth.log')
     else:
         filename = None
-    configure_logging(options.logging, '[ %(levelname)-8s] %(name)-18s: %(message)s', filename=filename)
+    configure_logging(options.logging, '[%(asctime)s][ %(levelname)-8s] %(name)-18s: %(message)s', datefmt="%Y-%m-%d %H:%M:%S", filename=filename)
 
     plugin_manager = create_plugin_manager()
 
