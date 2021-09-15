@@ -249,7 +249,7 @@ DEFAULT = odict((
                  "Physical GPIO OUT pin to light a LED when print button is pressed",
                  None, None)),
             ("illumination_relay_pin",
-                (11,
+                (13,
                  "Physical GPIO OUT pin to enable illumination when picture is taken",
                  None, None)),
         ))
