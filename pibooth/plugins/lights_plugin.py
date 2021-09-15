@@ -56,7 +56,7 @@ class LightsPlugin(object):
         app.leds.off()
 
     @pibooth.hookimpl
-    def state_capture_enter(self, app):
+    def state_preview_enter(self, app):
         app.illumination.on()
 
     @pibooth.hookimpl
