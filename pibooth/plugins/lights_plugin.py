@@ -60,7 +60,7 @@ class LightsPlugin(object):
         app.illumination.on()
 
     @pibooth.hookimpl
-    def state_capture_exit(self, app):
+    def state_processing_enter(self, app):
         app.illumination.off()
 
     @pibooth.hookimpl
