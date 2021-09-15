@@ -395,6 +395,7 @@ class PiApplication(object):
                     self._menu = PiConfigMenu(self._pm, self._config, self, self._window)
                     self._menu.show()
                     self.leds.blink(on_time=0.1, off_time=1)
+                    raise Exception
                 elif self._menu and self._menu.is_shown():
                     self._menu.process(events)
                 elif self._menu and not self._menu.is_shown():
@@ -413,8 +414,7 @@ class PiApplication(object):
             LOGGER.error(str(ex), exc_info=True)
             LOGGER.error(get_crash_message())
         finally:
-            self._pm.hook.pibooth_cleanup(app=self)
-            pygame.quit()
+            self._machine.set_state('wait')
 
 
 def main():
